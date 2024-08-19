@@ -1,0 +1,20 @@
+{
+  "name": "backend-express",
+  "version": "1.0.0",
+  "description": "TED Talk Tribe Backend API Server using Express.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Tests will be here soon...\"",
+    "start": "node --env-file=.env index.js",
+    "dev": "nodemon --env-file=.env index.js"
+  },
+  "author": "AttAditya",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.2",
+    "nodemon": "^3.1.4"
+  }
+}
