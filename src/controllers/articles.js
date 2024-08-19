@@ -25,7 +25,7 @@ async function createNewArticle(req, res) {
 
     let draftArticle = {
         id: articleId,
-        name: `Article-${articleId}`,
+        name: `DRAFT Article`,
         content: 'This is a draft article',
         image: '',
         author: articleAuthor,
