@@ -33,7 +33,7 @@ async function createNewArticle(req, res) {
             articleAuthor
         ],
         status: ARTICLE_STATUS.DRAFT,
-        tags: [],
+        tags: ["article"],
         publishedDate: null,
         lastUpdated: new Date()
     };
