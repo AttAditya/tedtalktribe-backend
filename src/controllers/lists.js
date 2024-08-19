@@ -1,10 +1,12 @@
 const articlesDB = require('../database/models/article');
-// const { ARTICLE_STATUS } = require('../enums');
+const { ARTICLE_STATUS } = require('../enums');
 
 async function getLatest(req, res) {
     let limit = req.query.limit || 9;
 
-    let articles = await articlesDB.find();
+    let articles = await articlesDB.find({
+        status: ARTICLE_STATUS.PUBLISHED
+    });
 
     articles = articles.sort((a, b) => {
         return b.publishedDate - a.publishedDate;
@@ -22,7 +24,8 @@ async function getTagged(req, res) {
     let limit = req.query.limit || 6;
 
     let articles = await articlesDB.find({
-        tags: tag
+        tags: tag,
+        status: ARTICLE_STATUS.PUBLISHED
     });
 
     articles = articles.sort((a, b) => {
