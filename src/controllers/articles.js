@@ -21,19 +21,23 @@ async function getArticle(req, res) {
 
 async function createNewArticle(req, res) {
     let articleId = utils.generation.uuid();
-    let articleAuthor = req.body.author;
+
+    let articleName = req.body.name || `Draft Article`;
+    let articleAuthor = req.body.author || 'Anonymous';
+    let articleContent = req.body.content || 'This is a draft article';
+    let articleImage = req.body.image || '';
+    let articleCoauthors = req.body.coauthors || [articleAuthor];
+    let articleTags = req.body.tags || ["article"];
 
     let draftArticle = {
         id: articleId,
-        name: `DRAFT Article`,
-        content: 'This is a draft article',
-        image: '',
+        name: articleName,
+        content: articleContent,
+        image: articleImage,
         author: articleAuthor,
-        coauthors: [
-            articleAuthor
-        ],
+        coauthors: articleCoauthors,
         status: ARTICLE_STATUS.DRAFT,
-        tags: ["article"],
+        tags: articleTags,
         publishedDate: null,
         lastUpdated: new Date()
     };
