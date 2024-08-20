@@ -21,7 +21,7 @@ async function getArticle(req, res) {
 
 async function createNewArticle(req, res) {
     let articleId = utils.generation.uuid();
-    let articleAuthor = "test-author";
+    let articleAuthor = req.body.author;
 
     let draftArticle = {
         id: articleId,

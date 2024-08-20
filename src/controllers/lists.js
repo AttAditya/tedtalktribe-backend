@@ -39,9 +39,41 @@ async function getTagged(req, res) {
     res.json(articles);
 }
 
+async function getUserPublished(req, res) {
+    let userId = req.params.userId;
+
+    let articles = await articlesDB.find({
+        author: userId,
+        status: ARTICLE_STATUS.PUBLISHED
+    });
+
+    articles = articles.sort((a, b) => {
+        return b.publishedDate - a.publishedDate;
+    });
+    
+    res.json(articles);
+}
+
+async function getUserDrafts(req, res) {
+    let userId = req.params.userId;
+
+    let articles = await articlesDB.find({
+        author: userId,
+        status: ARTICLE_STATUS.DRAFT
+    });
+
+    articles = articles.sort((a, b) => {
+        return b.lastUpdated - a.lastUpdated;
+    });
+
+    res.json(articles);
+}
+
 listsController = {
     getLatest,
-    getTagged
+    getTagged,
+    getUserPublished,
+    getUserDrafts
 };
 
 module.exports = listsController;
